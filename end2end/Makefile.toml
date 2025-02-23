@@ -1,4 +1,4 @@
-extend = { path = "../../cargo-make/main.toml" }
+extend = { path = "cargo-make/main.toml" }
 
 [tasks.test]
 env = { RUN_AUTOMATICALLY = false }

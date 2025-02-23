@@ -7,6 +7,6 @@ extend = [
 CLIENT_PROCESS_NAME = "todo_app_sqlite_axum"
 
 [tasks.test-ui]
-cwd = "./e2e"
+cwd = "./end2end"
 command = "cargo"
 args = ["make", "test-ui", "${@}"]
