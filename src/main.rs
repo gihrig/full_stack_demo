@@ -1,4 +1,4 @@
-use crate::app::*;
+use todo_app_sqlite_axum::app::*;
 use axum::{
     body::Body,
     extract::Path,
@@ -9,7 +9,6 @@ use axum::{
 };
 use leptos::prelude::*;
 use leptos_axum::{generate_route_list, LeptosRoutes};
-use todo_app_sqlite_axum::*;
 
 //Define a handler to test extractor with state
 async fn custom_handler(
@@ -27,7 +26,7 @@ async fn custom_handler(
 
 #[tokio::main]
 async fn main() {
-    use crate::app::ssr::db;
+    use todo_app_sqlite_axum::app::ssr::db;
 
     simple_logger::init_with_level(log::Level::Error)
         .expect("couldn't initialize logging");
