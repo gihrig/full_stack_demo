@@ -1,4 +1,4 @@
-use crate::todo::*;
+use crate::app::*;
 use axum::{
     body::Body,
     extract::Path,
@@ -27,7 +27,7 @@ async fn custom_handler(
 
 #[tokio::main]
 async fn main() {
-    use crate::todo::ssr::db;
+    use crate::app::ssr::db;
 
     simple_logger::init_with_level(log::Level::Error)
         .expect("couldn't initialize logging");
