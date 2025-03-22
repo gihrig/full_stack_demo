@@ -18,7 +18,7 @@ pub fn shell(options: LeptosOptions) -> impl IntoView {
                 <link rel="shortcut icon" type="image/ico" href="/favicon.ico" />
             </head>
             <body>
-                <TodoApp />
+                <App />
             </body>
         </html>
     }
@@ -105,7 +105,7 @@ pub async fn delete_todo(id: u16) -> Result<(), ServerFnError> {
 }
 
 #[component]
-pub fn TodoApp() -> impl IntoView {
+pub fn App() -> impl IntoView {
     view! {
         <header>
             <h1>"Todos"</h1>

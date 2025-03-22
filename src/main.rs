@@ -30,7 +30,7 @@ mod ssr_imports {
 #[tokio::main]
 async fn main() {
     use ssr_imports::custom_handler;
-    use todo_app_sqlite_axum::app::{shell, TodoApp, ssr::db};
+    use todo_app_sqlite_axum::app::{shell, App, ssr::db};
     use axum::{
         routing::get,
         Router,
@@ -53,7 +53,7 @@ async fn main() {
     let conf = get_configuration(None).unwrap();
     let leptos_options = conf.leptos_options;
     let addr = leptos_options.site_addr;
-    let routes = generate_route_list(TodoApp);
+    let routes = generate_route_list(App);
 
     // build our application with a route
     let app = Router::new()
