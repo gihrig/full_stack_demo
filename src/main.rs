@@ -1,36 +1,49 @@
-use todo_app_sqlite_axum::app::*;
-use axum::{
-    body::Body,
-    extract::Path,
-    http::Request,
-    response::{IntoResponse, Response},
-    routing::get,
-    Router,
-};
-use leptos::prelude::*;
-use leptos_axum::{generate_route_list, LeptosRoutes};
+#[cfg(feature = "ssr")]
+mod ssr_imports {
+    use axum::extract::State;
+    pub use axum::{
+        body::Body as AxumBody,
+        extract::Path,
+        http::Request,
+        response::{IntoResponse, Response},
+    };
+    use todo_app_sqlite_axum::app::shell;
+    use leptos::{config::LeptosOptions, context::provide_context};
 
-//Define a handler to test extractor with state
-async fn custom_handler(
-    Path(id): Path<String>,
-    req: Request<Body>,
-) -> Response {
-    let handler = leptos_axum::render_app_to_stream_with_context(
-        move || {
-            provide_context(id.clone());
-        },
-        TodoApp,
-    );
-    handler(req).await.into_response()
+    // This custom handler lets us provide Axum State via context
+    pub async fn custom_handler(
+        Path(id): Path<String>,
+        State(options): State<LeptosOptions>,
+        req: Request<AxumBody>,
+    ) -> Response {
+        let handler = leptos_axum::render_app_to_stream_with_context(
+            move || {
+                provide_context(id.clone());
+            },
+            move || shell(options.clone()),
+        );
+        handler(req).await.into_response()
+    }
 }
 
+#[cfg(feature = "ssr")]
 #[tokio::main]
 async fn main() {
-    use todo_app_sqlite_axum::app::ssr::db;
+    use ssr_imports::custom_handler;
+    use todo_app_sqlite_axum::app::{shell, TodoApp, ssr::db};
+    use axum::{
+        routing::get,
+        Router,
+    };
+    use leptos::logging::log;
+    use leptos::prelude::*;
+    use leptos_axum::{generate_route_list, LeptosRoutes};
 
+    // Initialize logger
     simple_logger::init_with_level(log::Level::Error)
         .expect("couldn't initialize logging");
 
+    // Connect to DB
     let mut conn = db().await.expect("couldn't connect to DB");
     if let Err(e) = sqlx::migrate!().run(&mut conn).await {
         eprintln!("{e:?}");
@@ -54,9 +67,16 @@ async fn main() {
 
     // run our app with hyper
     // `axum::Server` is a re-export of `hyper::Server`
+    log!("listening on http://{}", &addr);
     let listener = tokio::net::TcpListener::bind(&addr).await.unwrap();
-    println!("listening on http://{}", &addr);
     axum::serve(listener, app.into_make_service())
         .await
         .unwrap();
+}
+
+#[cfg(not(feature = "ssr"))]
+pub fn main() {
+    // no client-side main function
+    // unless we want this to work with e.g., Trunk for pure client-side testing
+    // see lib.rs for hydration function instead
 }

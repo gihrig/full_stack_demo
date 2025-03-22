@@ -1,7 +1,7 @@
 use leptos::prelude::*;
 
-// A basic function to display errors served by the error boundaries. Feel free to do more complicated things
-// here than just displaying them
+// A basic function to display errors served by the error boundaries. 
+// Feel free to do more complicated things here than just displaying them.
 #[component]
 pub fn ErrorTemplate(
     #[prop(optional)] outside_errors: Option<Errors>,
