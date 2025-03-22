@@ -3,7 +3,7 @@
     <img src="https://raw.githubusercontent.com/leptos-rs/leptos/main/docs/logos/Leptos_logo_RGB.svg" alt="Leptos Logo">
 </picture>
 
-# Leptos Todo Tailwind Sqlite with Axum
+# A Todo app built with Leptos Tailwind Sqlite and Axum
 
 This is a template for use with the [Leptos](https://github.com/leptos-rs/leptos) web framework and the [cargo-leptos](https://github.com/akesson/cargo-leptos) tool using [Axum](https://github.com/tokio-rs/axum).
 
@@ -23,7 +23,7 @@ cargo leptos new --git https://github.com/leptos-rs/start-axum
 to generate a new project template.
 
 ```bash
-cd todo_tw_leptos_sqlt_axum
+cd full_stack_demo (or whatever you named your app)
 ```
 
 to go to your newly created project.

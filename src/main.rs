@@ -7,7 +7,7 @@ mod ssr_imports {
         http::Request,
         response::{IntoResponse, Response},
     };
-    use todo_app_sqlite_axum::app::shell;
+    use full_stack_demo::app::shell;
     use leptos::{config::LeptosOptions, context::provide_context};
 
     // This custom handler lets us provide Axum State via context
@@ -30,7 +30,7 @@ mod ssr_imports {
 #[tokio::main]
 async fn main() {
     use ssr_imports::custom_handler;
-    use todo_app_sqlite_axum::app::{shell, App, ssr::db};
+    use full_stack_demo::app::{shell, App, ssr::db};
     use axum::{
         routing::get,
         Router,
