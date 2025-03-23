@@ -30,13 +30,10 @@ mod ssr_imports {
 #[tokio::main]
 async fn main() {
     use ssr_imports::custom_handler;
-    use full_stack_demo::app::{shell, App, ssr::db};
-    use axum::{
-        routing::get,
-        Router,
-    };
+    use full_stack_demo::app::{ shell, App, ssr::db };
+    use axum::{ routing::get, Router };
+    use leptos::config::get_configuration;
     use leptos::logging::log;
-    use leptos::prelude::*;
     use leptos_axum::{generate_route_list, LeptosRoutes};
 
     // Initialize logger
