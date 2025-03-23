@@ -1,9 +1,19 @@
 <picture>
-    <source srcset="https://raw.githubusercontent.com/leptos-rs/leptos/main/docs/logos/Leptos_logo_Solid_White.svg" media="(prefers-color-scheme: dark)">
-    <img src="https://raw.githubusercontent.com/leptos-rs/leptos/main/docs/logos/Leptos_logo_RGB.svg" alt="Leptos Logo">
+    <source srcset="https://raw.githubusercontent.com/leptos-rs/.github/main/logos/Leptos_logo_pref_dark_RGB.svg" media="(prefers-color-scheme: dark)">
+    <img src="https://raw.githubusercontent.com/leptos-rs/.github/main/logos/Leptos_logo_RGB.svg" alt="Leptos Logo">
 </picture>
 
-# A Todo app built with Leptos Tailwind Sqlite and Axum
+# Todo app built with Leptos Tailwind Sqlite and Axum
+
+## A mashup of several Leptos example apps:
+
+- [todo_app_sqlite_axum](https://github.com/leptos-rs/leptos/tree/main/examples/todo_app_sqlite_axum)
+- [todomvc](https://github.com/leptos-rs/leptos/tree/main/examples/todomvc)
+- [tailwind_axum](https://github.com/leptos-rs/leptos/tree/main/examples/tailwind_axum)
+- [hackernews_islands_axum](https://github.com/leptos-rs/leptos/tree/main/examples/hackernews_islands_axum)
+- [server_fns_axum](https://github.com/leptos-rs/leptos/tree/main/examples/server_fns_axum)
+- [errors_axum](https://github.com/leptos-rs/leptos/tree/main/examples/errors_axum)
+
 
 This is a template for use with the [Leptos](https://github.com/leptos-rs/leptos) web framework and the [cargo-leptos](https://github.com/akesson/cargo-leptos) tool using [Axum](https://github.com/tokio-rs/axum).
 
