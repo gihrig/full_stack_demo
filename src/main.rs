@@ -7,7 +7,7 @@ mod ssr_imports {
         http::Request,
         response::{IntoResponse, Response},
     };
-    use full_stack_demo::app::shell;
+    use full_stack_demo::todo::shell;
     use leptos::{config::LeptosOptions, context::provide_context};
 
     // This custom handler lets us provide Axum State via context
@@ -29,12 +29,13 @@ mod ssr_imports {
 #[cfg(feature = "ssr")]
 #[tokio::main]
 async fn main() {
-    use ssr_imports::custom_handler;
-    use full_stack_demo::app::{ shell, App, ssr::db };
     use axum::{ routing::get, Router };
+    use full_stack_demo::todo::{ shell, TodoApp, ssr::db };
+    // use full_stack_demo::error::{ shell, ErrorApp };
     use leptos::config::get_configuration;
     use leptos::logging::log;
     use leptos_axum::{generate_route_list, LeptosRoutes};
+    use ssr_imports::custom_handler;
 
     // Initialize logger
     simple_logger::init_with_level(log::Level::Error)
@@ -50,7 +51,8 @@ async fn main() {
     let conf = get_configuration(None).unwrap();
     let leptos_options = conf.leptos_options;
     let addr = leptos_options.site_addr;
-    let routes = generate_route_list(App);
+    let routes = generate_route_list(TodoApp);
+    // let routes = generate_route_list(ErrorApp);
 
     // build our application with a route
     let app = Router::new()
