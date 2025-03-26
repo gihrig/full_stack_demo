@@ -1,3 +1,4 @@
+#![cfg_attr(debug_assertions, allow(dead_code, unused_imports))]
 use leptos::either::Either;
 use leptos_meta::*;
 use leptos::{logging::log, prelude::*};
