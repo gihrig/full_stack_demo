@@ -1,8 +1,26 @@
 import { test, expect } from "@playwright/test";
 
 test.describe("Todo Application", () => {
+  // Helper function to delete all todos
+  const deleteAllTodos = async (page) => {
+    const deleteButtons = page.locator('input[type="submit"][value="X"]');
+    const todoCount = await deleteButtons.count();
+
+    // Delete all existing todos
+    for (let i = 0; i < todoCount; i++) {
+      await deleteButtons.first().click();
+    }
+  };
+
   test.beforeEach(async ({ page }) => {
     await page.goto("http://localhost:3000/");
+    // Delete any existing todos before each test
+    await deleteAllTodos(page);
+  });
+
+  test.afterEach(async ({ page }) => {
+    // Ensure todos are cleaned up after each test
+    await deleteAllTodos(page);
   });
 
   test("shell function renders correct page structure", async ({ page }) => {
@@ -49,15 +67,6 @@ test.describe("Todo Application", () => {
   });
 
   test("handle empty todo list", async ({ page }) => {
-    // Ensure no existing todos
-    const deleteButtons = page.locator('input[type="submit"][value="X"]');
-    const todoCount = await deleteButtons.count();
-
-    // Delete all existing todos
-    for (let i = 0; i < todoCount; i++) {
-      await deleteButtons.first().click();
-    }
-
     // Check for "No tasks were found" message
     const emptyMessage = page.locator("p");
     await expect(emptyMessage).toHaveText("No tasks were found.");
