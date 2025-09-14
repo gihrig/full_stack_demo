@@ -64,6 +64,17 @@ cargo leptos build --release
 Will generate your server binary in target/server/release and your site package in target/site
 
 ## Testing Your Project
+Playwright will build the project before running tests. No other instance can be running.
+
+Install or update Playwright and related test packages.
+```bash
+cd end2end
+npm install
+npx playwright install
+cd ..
+```
+
+Commands below are run from the project root.
 ```bash
 cargo leptos end-to-end
 
