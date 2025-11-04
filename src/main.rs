@@ -40,6 +40,10 @@ async fn main() {
     // Initialize logger
     simple_logger::init_with_level(log::Level::Error)
         .expect("couldn't initialize logging");
+    // Provide Rust stack trace in wasm errors
+    // For additional frames see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error/stackTraceLimit
+    #[cfg(feature = "hydrate")]
+    console_error_panic_hook::set_once();
 
     // Connect to DB
     let mut conn = db().await.expect("couldn't connect to DB");
