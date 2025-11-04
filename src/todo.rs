@@ -108,6 +108,7 @@ pub async fn delete_todo(id: u16) -> Result<(), ServerFnError> {
         .map(|_| ())?)
 }
 
+#[allow(non_snake_case)]
 #[component]
 pub fn TodoApp() -> impl IntoView {
     view! {
@@ -120,6 +121,7 @@ pub fn TodoApp() -> impl IntoView {
     }
 }
 
+#[allow(non_snake_case)]
 #[component]
 pub fn Todos() -> impl IntoView {
     let add_todo = ServerMultiAction::<AddTodo>::new();

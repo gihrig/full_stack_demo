@@ -47,6 +47,7 @@ pub fn shell(options: LeptosOptions) -> impl IntoView {
     }
 }
 
+#[allow(non_snake_case)]
 #[component]
 pub fn ErrorApp() -> impl IntoView {
   use crate::{error_template::ErrorTemplate, errors::AppError};
@@ -75,6 +76,7 @@ pub fn ErrorApp() -> impl IntoView {
     }
 }
 
+#[allow(non_snake_case)]
 #[component]
 pub fn ExampleErrors() -> impl IntoView {
     let generate_internal_error =
@@ -120,11 +122,13 @@ pub fn ExampleErrors() -> impl IntoView {
     }
 }
 
+#[allow(non_snake_case)]
 #[component]
 pub fn ReturnsServerError() -> impl IntoView {
     Err::<String, AppError>(AppError::InternalServerError)
 }
 
+#[allow(non_snake_case)]
 #[component]
 pub fn ReturnsNotImplementedError() -> impl IntoView {
     Err::<String, AppError>(AppError::NotImplementedError)

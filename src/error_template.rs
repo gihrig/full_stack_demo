@@ -5,6 +5,7 @@ use leptos_axum::ResponseOptions;
 
 // A basic function to display errors served by the error boundaries.
 // Feel free to do more complicated things here than just displaying them.
+#[allow(non_snake_case)]
 #[component]
 pub fn ErrorTemplate(#[prop(into)] errors: Signal<Errors>) -> impl IntoView {
     // Get Errors from Signal
