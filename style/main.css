@@ -1,0 +1,12 @@
+@import 'tailwindcss';
+/* @import 'base.css'; */
+/* @import 'index.css'; */
+
+body {
+  font-family: sans-serif;
+  text-align: center;
+}
+
+.pending {
+  color: purple;
+}

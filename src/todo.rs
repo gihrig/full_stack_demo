@@ -177,7 +177,7 @@ pub fn Todos() -> impl IntoView {
         <div>
             <Transition fallback=move || view! { <p>"Loading..."</p> }>
                 <ErrorBoundary fallback=|errors| view! { <ErrorTemplate errors /> }>
-                    <ul>
+                    <ul class="text-red-500 bg-blue-200">
                         {existing_todos}
                         {move || {
                             submissions
