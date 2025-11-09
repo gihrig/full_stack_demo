@@ -1,4 +1,8 @@
 {
+  "scripts": {
+    "build": "npx tailwindcss -i ./style/input.css -o ./target/site/pkg/full_stack_demo.css",
+    "watch": "npx tailwindcss -i ./style/input.css -o ./target/site/pkg/full_stack_demo.css --watch"
+  },
   "devDependencies": {
     "tailwindcss": "4.1.17",
     "@tailwindcss/cli": "4.1.17"
